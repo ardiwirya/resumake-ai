@@ -1,16 +1,34 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/header";
 import { StepIndicator } from "@/components/builder/step-indicator";
 import { BuilderForm } from "@/components/builder/builder-form";
 import { BuilderNav } from "@/components/builder/builder-nav";
 import { AutoSaveIndicator } from "@/components/builder/auto-save-indicator";
 import { ResumePreview } from "@/components/preview/resume-preview";
-import { PDFExportButton } from "@/components/pdf/pdf-export-button";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useResumeStore } from "@/store/resume-store";
 import { useHasHydrated } from "@/hooks/use-has-hydrated";
+
+// @react-pdf/renderer must load as a single, browser-only module graph.
+// Loading it this way (one dynamic import, ssr:false) prevents Next.js
+// from creating a duplicate server/client module instance, which is what
+// previously caused "unitsPerEm" and "Eo is not a function" errors.
+const PDFExportButton = dynamic(
+  () => import("@/components/pdf/pdf-export-button"),
+  {
+    ssr: false,
+    loading: () => (
+      <Button disabled className="w-full">
+        <Loader2 className="h-4 w-4 animate-spin" />
+        Menyiapkan PDF...
+      </Button>
+    ),
+  }
+);
 
 export default function BuilderPage() {
   const data = useResumeStore((s) => s.data);
