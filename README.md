@@ -5,8 +5,8 @@ Aplikasi pembuat CV modern berbasis web yang memungkinkan pengguna menyusun resu
 Live Demo : [Resumake AI](https://resumake-ai.vercel.app)
 
 ## Preview
-![Screencapture]()
-
+![Home Page](docs/screenshots/landing-page.png)
+![Build CV](docs/screenshots/build-cv.png)
 
 ## Fitur
 
@@ -44,7 +44,7 @@ Live Demo : [Resumake AI](https://resumake-ai.vercel.app)
 ## Struktur Folder
 
 ```
-ai-resume-builder/
+resumake-ai/
 ├── docs/
 │   └── screenshots/            Tempat menyimpan gambar preview untuk README
 ├── public/                     Aset statis
