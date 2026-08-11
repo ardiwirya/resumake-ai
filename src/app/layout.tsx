@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "@/components/layout/providers";
 
 export const metadata: Metadata = {
-  title: "AI Resume Builder",
+  title: "Resumake AI",
   description:
     "Buat CV profesional dalam hitungan menit dengan live preview, banyak template, dan export PDF.",
 };

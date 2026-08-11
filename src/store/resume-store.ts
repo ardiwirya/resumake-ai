@@ -146,7 +146,7 @@ export const useResumeStore = create<ResumeStoreState>()(
         }),
     }),
     {
-      name: "ai-resume-builder-storage",
+      name: "resumake-ai-storage",
       partialize: (state) => ({
         data: state.data,
         currentStep: state.currentStep,

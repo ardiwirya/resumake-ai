@@ -4,9 +4,25 @@ import {
   Text,
   View,
   StyleSheet,
+  Font, // 1. Import Font dari library
 } from "@react-pdf/renderer";
 import type { ResumeData } from "@/types/resume";
 import { formatDateRange } from "@/lib/utils";
+
+// 2. Daftarkan Custom Font menggunakan URL langsung (Bypass bug Turbopack)
+Font.register({
+  family: "Roboto",
+  fonts: [
+    {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf",
+      fontWeight: 400,
+    },
+    {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf",
+      fontWeight: 700,
+    },
+  ],
+});
 
 const SKILL_LEVEL_LABEL: Record<string, string> = {
   beginner: "Pemula",
@@ -32,12 +48,12 @@ const styles = StyleSheet.create({
   page: {
     padding: 36,
     fontSize: 10,
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto", // 3. Ganti Helvetica menjadi Roboto
     color: "#1e293b",
   },
   headerName: {
     fontSize: 20,
-    fontWeight: 700,
+    fontWeight: 700, // Sekarang akan menggunakan file roboto-bold
     marginBottom: 2,
   },
   headerTitle: {
@@ -54,7 +70,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 10,
-    fontWeight: 700,
+    fontWeight: 700, // Sekarang akan menggunakan file roboto-bold
     textTransform: "uppercase",
     letterSpacing: 1,
     marginBottom: 6,
@@ -67,7 +83,7 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 10,
-    fontWeight: 700,
+    fontWeight: 700, // Sekarang akan menggunakan file roboto-bold
   },
   itemSubtitle: {
     fontSize: 9,
@@ -111,13 +127,15 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
   return (
     <Document
       title={`CV - ${personalInfo.fullName || "Resume"}`}
-      author={personalInfo.fullName || "AI Resume Builder"}
+      author={personalInfo.fullName || "Resumake AI"}
     >
       <Page size="A4" style={styles.page}>
         <Text style={[styles.headerName, { color: accent }]}>
           {personalInfo.fullName || "Nama Lengkap"}
         </Text>
-        <Text style={styles.headerTitle}>{personalInfo.jobTitle || "Judul Profesi"}</Text>
+        <Text style={styles.headerTitle}>
+          {personalInfo.jobTitle || "Judul Profesi"}
+        </Text>
         <View style={styles.contactRow}>
           {personalInfo.email && <Text>{personalInfo.email}</Text>}
           {personalInfo.phone && <Text>{personalInfo.phone}</Text>}
@@ -129,14 +147,18 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
 
         {personalInfo.summary && (
           <View>
-            <Text style={[styles.sectionTitle, { color: accent }]}>Ringkasan</Text>
+            <Text style={[styles.sectionTitle, { color: accent }]}>
+              Ringkasan
+            </Text>
             <Text style={styles.description}>{personalInfo.summary}</Text>
           </View>
         )}
 
         {experience.length > 0 && (
           <View>
-            <Text style={[styles.sectionTitle, { color: accent }]}>Pengalaman Kerja</Text>
+            <Text style={[styles.sectionTitle, { color: accent }]}>
+              Pengalaman Kerja
+            </Text>
             {experience.map((item) => (
               <View key={item.id} wrap={false} style={{ marginBottom: 8 }}>
                 <View style={styles.itemRow}>
@@ -144,10 +166,16 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
                     {item.position || "Posisi"} — {item.company}
                   </Text>
                   <Text style={styles.itemDate}>
-                    {formatDateRange(item.startDate, item.endDate, item.isCurrent)}
+                    {formatDateRange(
+                      item.startDate,
+                      item.endDate,
+                      item.isCurrent,
+                    )}
                   </Text>
                 </View>
-                {item.location && <Text style={styles.itemSubtitle}>{item.location}</Text>}
+                {item.location && (
+                  <Text style={styles.itemSubtitle}>{item.location}</Text>
+                )}
                 {item.description && (
                   <Text style={styles.description}>{item.description}</Text>
                 )}
@@ -158,13 +186,19 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
 
         {education.length > 0 && (
           <View>
-            <Text style={[styles.sectionTitle, { color: accent }]}>Pendidikan</Text>
+            <Text style={[styles.sectionTitle, { color: accent }]}>
+              Pendidikan
+            </Text>
             {education.map((item) => (
               <View key={item.id} wrap={false} style={{ marginBottom: 6 }}>
                 <View style={styles.itemRow}>
                   <Text style={styles.itemTitle}>{item.degree || "Gelar"}</Text>
                   <Text style={styles.itemDate}>
-                    {formatDateRange(item.startDate, item.endDate, item.isCurrent)}
+                    {formatDateRange(
+                      item.startDate,
+                      item.endDate,
+                      item.isCurrent,
+                    )}
                   </Text>
                 </View>
                 <Text style={styles.itemSubtitle}>{item.institution}</Text>
@@ -197,7 +231,9 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
 
         {certificates.length > 0 && (
           <View>
-            <Text style={[styles.sectionTitle, { color: accent }]}>Sertifikat</Text>
+            <Text style={[styles.sectionTitle, { color: accent }]}>
+              Sertifikat
+            </Text>
             {certificates.map((item) => (
               <Text key={item.id} style={styles.bulletRow}>
                 {item.name} — {item.issuer} ({item.issueDate})
@@ -208,11 +244,15 @@ export function ResumePDFDocument({ data }: { data: ResumeData }) {
 
         {portfolio.length > 0 && (
           <View>
-            <Text style={[styles.sectionTitle, { color: accent }]}>Portfolio</Text>
+            <Text style={[styles.sectionTitle, { color: accent }]}>
+              Portfolio
+            </Text>
             {portfolio.map((item) => (
               <View key={item.id} wrap={false} style={{ marginBottom: 6 }}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
-                {item.url && <Text style={styles.itemSubtitle}>{item.url}</Text>}
+                {item.url && (
+                  <Text style={styles.itemSubtitle}>{item.url}</Text>
+                )}
                 {item.description && (
                   <Text style={styles.description}>{item.description}</Text>
                 )}

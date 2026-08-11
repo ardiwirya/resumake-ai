@@ -82,10 +82,10 @@ export function getDummyResumeData(): ResumeData {
     portfolio: [
       {
         id: generateId(),
-        title: "AI Resume Builder",
+        title: "Resumake AI",
         description:
           "Aplikasi pembuat CV modern dengan live preview dan export PDF menggunakan Next.js 15.",
-        url: "https://github.com/ardiwirya/ai-resume-builder",
+        url: "https://github.com/ardiwirya/resumake-ai",
       },
       {
         id: generateId(),

@@ -64,7 +64,7 @@ export default function HomePage() {
             Bangun CV Profesional dalam Hitungan Menit
           </h1>
           <p className="max-w-xl text-balance text-muted-foreground sm:text-lg">
-            AI Resume Builder membantu kamu membuat CV modern dengan live
+            Resumake AI membantu kamu membuat CV modern dengan live
             preview, banyak pilihan template, dan export PDF sekali klik.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -98,7 +98,7 @@ export default function HomePage() {
 
       <footer className="border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-2 text-sm text-muted-foreground sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} AI Resume Builder. Dibuat oleh Ardi Wirya.</p>
+          <p>&copy; {new Date().getFullYear()} Resumake AI. Dibuat oleh Ardi Wirya.</p>
           <p>Dibangun dengan Next.js, TypeScript, dan Tailwind CSS.</p>
         </div>
       </footer>

@@ -57,7 +57,7 @@ export function PortfolioStep({ formId, onValid }: PortfolioStepProps) {
             <FormField label="Judul Proyek" htmlFor={`title-${field.id}`} required>
               <Input
                 id={`title-${field.id}`}
-                placeholder="AI Resume Builder"
+                placeholder="Resumake AI"
                 {...register(`portfolio.${index}.title` as const)}
               />
             </FormField>

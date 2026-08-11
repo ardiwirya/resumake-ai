@@ -8,7 +8,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <FileText className="h-5 w-5 text-primary" />
-          <span>AI Resume Builder</span>
+          <span>Resumake AI</span>
         </Link>
         <nav className="flex items-center gap-2">
           <Link
