@@ -1,6 +1,6 @@
 # Resumake AI
 
-Aplikasi pembuat CV modern berbasis web yang memungkinkan pengguna menyusun resume profesional melalui form multi step, melihat hasilnya secara langsung lewat live preview, dan mengekspornya sebagai file PDF siap kirim. Proyek ini dibangun sebagai portfolio front-end dengan arsitektur yang scalable, type-safe, dan mengikuti best practice Next.js App Router.
+Aplikasi pembuat CV modern berbasis web yang memungkinkan pengguna menyusun resume profesional melalui form multi step, melihat hasilnya secara langsung lewat live preview, dan mengekspornya sebagai file PDF siap kirim. Proyek ini dibangun sebagai portfolio front-end dengan arsitektur yang scalable, type-safe, dan mengikuti best practice Next.js App Router. 
 
 Live Demo : [Resumake AI](https://resumake-ai.vercel.app)
 
